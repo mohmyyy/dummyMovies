@@ -17,5 +17,4 @@ const MovieList = (props) => {
     </ul>
   );
 };
-
-export default MovieList;
+export default React.memo(MovieList);
