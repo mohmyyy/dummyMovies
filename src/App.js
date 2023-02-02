@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import MoviesList from "./components/MoviesList";
 import "./App.css";
+import NewMovies from "./components/NewMovies/NewMovies";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -22,7 +23,7 @@ function App() {
           id: movieData.episode_id,
           title: movieData.title,
           openingText: movieData.opening_crawl,
-          releseDate: movieData.release_date,
+          releaseDate: movieData.release_date,
         };
       });
       setMovies(transformedMovies);
@@ -50,6 +51,9 @@ function App() {
 
   return (
     <React.Fragment>
+      <section>
+        <NewMovies />
+      </section>
       <section>
         <button onClick={fetchMovieHandler}>Fetch Movies</button>
       </section>
