@@ -9,6 +9,7 @@ const MovieList = (props) => {
       {props.movies.map((movie) => (
         <Movie
           key={movie.id}
+          onDel = {props.onDel.bind(null,movie.id)}
           title={movie.title}
           releaseDate={movie.releaseDate}
           openingText={movie.openingText}

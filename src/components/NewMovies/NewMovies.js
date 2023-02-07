@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import classes from "./NewMovies.module.css";
-const NewMovies = () => {
+const NewMovies = (props) => {
   const [value, setValue] = useState({
     title: "",
     releaseDate: "",
@@ -18,7 +18,7 @@ const NewMovies = () => {
   };
   const formSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(value);
+    props.onAddMovie(value)
     setValue({
       title: "",
       releaseDate: "",
@@ -27,8 +27,7 @@ const NewMovies = () => {
   };
   return (
     <form onSubmit={formSubmitHandler}>
-      <div className={classes["new-movies"]}>
-        <div>
+        <div className={classes.control}>
           <label htmlFor="title">Title</label>
           <input
             onChange={titleChangeHandler}
@@ -36,19 +35,20 @@ const NewMovies = () => {
             placeholder="Movie title"
             id="title"
             value={value.title}
+            required
           />
         </div>
-        <div>
+        <div className={classes.control}>
           <label htmlFor="text">Opening Text</label>
-          <input
+          <textarea
             onChange={textChangeHandler}
             placeholder="Opening Text"
-            type="text"
             id="text"
+            rows="5"
             value={value.openingText}
           />
         </div>
-        <div>
+        <div className={classes.control}>
           <label htmlFor="releaseDate">Release Date</label>
           <input
             onChange={dateChangeHandler}
@@ -57,8 +57,8 @@ const NewMovies = () => {
             value={value.releaseDate}
           />
         </div>
-      </div>
-      <button type="submit">Add Movie</button>
+      <button style={{margin:"20px"}} type="submit">Add Movie</button>
+      <button onClick={props.onClick} type="click">Close</button>
     </form>
   );
 };
